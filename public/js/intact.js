@@ -21,8 +21,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      isVisible: false
+    };
+  },
+  methods: {
+    toggleDisplay: function toggleDisplay() {
+      this.isVisible = !this.isVisible;
+    }
+  }
+});
 
 /***/ }),
 
@@ -2066,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.i_p-3[data-v-59c05db7] {\r\n    padding: 30px;\n}\n.i_bg-primary[data-v-59c05db7] {\r\n    background-color: #69d2e7;\n}\n.i_position-fixed[data-v-59c05db7] {\r\n    position: fixed;\r\n    z-index: 2147483004;\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n    border: none;\r\n    bottom: 80px;\r\n    right: 20px;\r\n    max-width: 48px;\r\n    width: 48px;\r\n    max-height: 48px;\r\n    height: 48px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.06), 0 2px 32px 0 rgba(0, 0, 0, 0.16);\r\n    transition: transform 167ms cubic-bezier(0.33, 0.00, 0.00, 1.00);\r\n    box-sizing: content-box;\n}\n.i_trigger_btn[data-v-59c05db7] {\r\n    width: 48px;\r\n    height: 48px;\r\n    border-radius: 50%;\r\n    border: 1px solid #88cff1;\r\n    background: #90d4f4;\n}\n.i_trigger_btn[data-v-59c05db7]:hover {\r\n    transition: transform 250ms cubic-bezier(0.33, 0, 0, 1);\r\n    transform: scale(1.1);\n}\n.i_trigger_btn[data-v-59c05db7]:active {\r\n    transform: scale(0.85);\r\n    transition: transform 134ms cubic-bezier(0.45, 0, 0.2, 1);\n}\n.i_text-white[data-v-59c05db7] {\r\n    color: #ffffff;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.i_p-3[data-v-59c05db7] {\r\n    padding: 30px;\n}\n.i_bg-primary[data-v-59c05db7] {\r\n    background-color: #69d2e7;\n}\n.i_position-fixed[data-v-59c05db7] {\r\n    position: fixed;\r\n    z-index: 2147483004;\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n    border: none;\r\n    bottom: 80px;\r\n    right: 20px;\r\n    max-width: 48px;\r\n    width: 48px;\r\n    max-height: 48px;\r\n    height: 48px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.06), 0 2px 32px 0 rgba(0, 0, 0, 0.16);\r\n    transition: transform 167ms cubic-bezier(0.33, 0.00, 0.00, 1.00);\r\n    box-sizing: content-box;\n}\n.i_trigger_btn[data-v-59c05db7] {\r\n    width: 48px;\r\n    height: 48px;\r\n    border-radius: 50%;\r\n    border: 1px solid #88cff1;\r\n    background: #90d4f4;\n}\n.i_trigger_btn[data-v-59c05db7]:hover {\r\n    transition: transform 250ms cubic-bezier(0.33, 0, 0, 1);\r\n    transform: scale(1.1);\n}\n.i_trigger_btn[data-v-59c05db7]:active {\r\n    transform: scale(0.85);\r\n    transition: transform 134ms cubic-bezier(0.45, 0, 0.2, 1);\n}\n.i_text-white[data-v-59c05db7] {\r\n    color: #ffffff;\n}\n.i_dialog[data-v-59c05db7] {\r\n\tposition: absolute;\r\n    top: -170px;\r\n    left: -270px;\r\n    border-radius: 20px;\r\n    background: white;\n}\n.i_dialog iframe[data-v-59c05db7] {\r\n\r\n border: none;\r\n width: 100%;\r\n height: 100%;\n}\n.i_box-shadow-1[data-v-59c05db7] {\r\n\tbox-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2879,28 +2897,50 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "i_position-fixed" }, [
-    _c("button", { staticClass: "i_trigger_btn i_text-white" }, [
-      _c(
-        "svg",
-        {
-          attrs: {
-            version: "1.1",
-            xmlns: "http://www.w3.org/2000/svg",
-            width: "25",
-            height: "25",
-            viewBox: "0 0 32 32",
-          },
-        },
-        [
-          _c("path", {
+    _c(
+      "button",
+      {
+        staticClass: "i_trigger_btn i_text-white",
+        on: { click: _vm.toggleDisplay },
+      },
+      [
+        _c(
+          "svg",
+          {
             attrs: {
-              d: "M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z",
-              fill: "#ffffff",
+              version: "1.1",
+              xmlns: "http://www.w3.org/2000/svg",
+              width: "25",
+              height: "25",
+              viewBox: "0 0 32 32",
+            },
+          },
+          [
+            _c("path", {
+              attrs: {
+                d: "M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z",
+                fill: "#ffffff",
+              },
+            }),
+          ]
+        ),
+      ]
+    ),
+    _vm._v(" "),
+    _vm.isVisible
+      ? _c("div", { staticClass: "i_dialog i_box-shadow-1" }, [
+          _c("iframe", {
+            attrs: {
+              allowfullscreen: "",
+              name: "intercom-messenger-frame",
+              title: "Intercom live chat",
+              "data-intercom-frame": "true",
+              role: "dialog",
+              src: "data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>",
             },
           }),
-        ]
-      ),
-    ]),
+        ])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

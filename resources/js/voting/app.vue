@@ -1,14 +1,31 @@
 <template>
     <div class="i_position-fixed">
-        <button class="i_trigger_btn i_text-white">
+        <button class="i_trigger_btn i_text-white" @click="toggleDisplay">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
                 <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z" fill="#ffffff"></path>
             </svg>
         </button>
+
+        <div class="i_dialog i_box-shadow-1" v-if="isVisible">
+        	<iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe>
+        	<!-- <iframe src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe> -->
+        </div>
+
+
     </div>
 </template>
 <script>
     export default {
+    	data() {
+    		return {
+    			isVisible: false
+    		};
+    	},
+    	methods: {
+    		 toggleDisplay() {
+      			this.isVisible = !this.isVisible;
+    		}
+    	}
 
 	}
 </script>
@@ -60,6 +77,26 @@
 
 .i_text-white {
     color: #ffffff;
+}
+
+.i_dialog {
+	position: absolute;
+    top: -170px;
+    left: -270px;
+    border-radius: 20px;
+    background: white;
+}
+
+.i_dialog iframe {
+
+ border: none;
+ width: 100%;
+ height: 100%;
+
+}
+
+.i_box-shadow-1 {
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
 }
 
 </style>
