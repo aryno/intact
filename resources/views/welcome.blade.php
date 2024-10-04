@@ -6,14 +6,9 @@
 
         <title>Intact</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-        <script type="text/javascript" src="/js/intact.js"></script>
     </head>
     <body class="">
-        <div>hello</div>
+        <div id="app_intact"></div>
+        <script src="{{ mix('js/intact.js') }}"></script>
     </body>
 </html>

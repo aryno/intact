@@ -12,7 +12,22 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js/intact.js')
-    .postCss('resources/css/app.css', 'public/css', [
+ //.webpackConfig(
+ // {
+ //       output: {
+ //           library: 'MyLibrary', // The global variable name
+ //           libraryTarget: 'umd', // Use UMD
+ //           umdNamedDefine: true // Use named AMD modules
+ //       },
+ //       externals: {
+ //           // Specify any external dependencies if needed
+ //            'vue': 'Vue', // Uncomment if using Vue
+ //       }
+ //   }
+//   )
+.vue();
+
+mix.postCss('resources/css/app.css', 'public/css', [
         //
     ]);
     //mix.js('resources/js/intact.js', 'dist').vue();
