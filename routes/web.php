@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
@@ -27,12 +28,16 @@ Route::middleware('guest')->group(function() {
 });
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-
 /**
  * User specific
  */
 Route::name('auth.')->middleware('auth')->group(function() {
     Route::get('dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
+    Route::post('createFeature', [FeatureController::class, 'createFeature'])->name('createFeature');
+    Route::get('feature', [FeatureController::class, 'createFeatureForm'])->name('feature');
+    Route::get('features/{id}/edit', [FeatureController::class, 'getFeatures'])->name('getFeatures');
+    Route::put('updateFeature/{id}', [FeatureController::class, 'updateFeature'])->name('auth.updateFeature');
+    Route::get('deleteFeature/{id}', [FeatureController::class, 'deleteFeature']);
 });
 
 /**

@@ -1,0 +1,107 @@
+<?php
+
+/*
+*Feature Controller
+*Used to create , update, get and delete features
+*/
+
+namespace App\Http\Controllers;
+
+use App\Models\Feature;
+use Illuminate\Http\Request;
+
+class FeatureController extends Controller
+{
+    /*
+    *create feature
+    * input params : title, desciption
+    */
+    public function createFeatureForm(Request $request){
+        return view('web.feature.createFeature');
+    }
+    public function createFeature(Request $request)
+    {
+        
+ 
+        // Validate the request
+        $validator = Feature::validate($request->all());
+
+        // Check for validation errors
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400); // Bad Request
+        }
+        
+        $imagePath = null;
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('images', 'public'); // Store in public/images directory
+        }
+        $userId = auth()->id();
+        $featureData = $request->all();
+        $featureData['user_id'] = $userId;
+        $featureData['image'] =$imagePath;
+
+         $feature = Feature::create($featureData);
+         return redirect()->route('auth.feature')->with('success', 'Feature created successfully!');
+    }
+
+    /*
+    *fetch all feature or specified feature with id
+    * input params : id 
+    */
+    public function getFeatures(Request $request, $id = null)
+    {
+        if ($id) {
+            $feature = Feature::find($id);
+
+            if (!$feature) {
+                return response()->json(['message' => 'Feature not found'], 404); // Not Found
+            }
+            return view('web.feature.createFeature', compact('feature'));
+
+        } else {
+            $features = Feature::all();
+
+            return response()->json($features, 200); 
+        }
+    }
+
+    public function updateFeature(Request $request,$id)
+    {
+        $feature = Feature::find($id);
+        if (!$feature) {
+            return response()->json(['message' => 'Feature not found'], 404); // Not Found
+        }
+        $validator = Feature::validate($request->all());
+
+        // Check for validation errors
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400); // Bad Request
+        }
+
+        // Update the feature with new data
+        $feature->update($request->all());
+
+        return redirect()->route('auth.feature')->with('success', 'Feature updated successfully!');
+    }
+
+    /*
+    *delete feature 
+    * input params : id
+    */
+    public function deleteFeature($id)
+    {
+        $feature = Feature::find($id);
+
+        // Check if the feature exists
+        if (!$feature) {
+            return response()->json(['message' => 'Feature not found'], 404); 
+        }
+
+        // Delete the feature
+        $feature->delete();
+
+        // Return a success response
+        return response()->json(['message' => 'Feature deleted successfully'], 200);
+    }
+
+}
