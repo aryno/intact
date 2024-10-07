@@ -8,6 +8,7 @@
 
     </head>
     <body class="">
-        <div id="app_intact"></div> <script src="http://intact.test:8090/app/hnmjATsC"></script>
+        <div id="app_intact"></div>
+        <script id="script_intact" src="http://intact.test:8090/script/hnmjATsC"></script>
     </body>
 </html>

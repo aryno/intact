@@ -71,4 +71,14 @@ class AppController extends Controller
             'Content-Type' => 'application/javascript',
         ]);
     }
+
+    /**
+     * Show the app
+     */
+    public function show($clientId)
+    {
+        $app = App::where('client_id', $clientId)->firstOrFail();
+
+        return view('web.app.show', compact('app'));
+    }
 }

@@ -9,7 +9,7 @@
         <div class="i_dialog i_box-shadow-1" v-if="isVisible">
         	<!-- <iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe> -->
 
-            <iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" src="http://intact.test:8090/app"></iframe>
+            <iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" :src="src"></iframe>
 
 
         	<!-- <iframe src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe> -->
@@ -20,11 +20,23 @@
 </template>
 <script>
     export default {
+         props: {
+            path: {
+                type: String,
+                required: true
+            }
+        },
     	data() {
     		return {
+                src: this.path + '/app',
     			isVisible: false
     		};
     	},
+        mounted() {
+
+            console.log("The trackerId", this.path); // "someid"
+        },
+
     	methods: {
     		 toggleDisplay() {
       			this.isVisible = !this.isVisible;
