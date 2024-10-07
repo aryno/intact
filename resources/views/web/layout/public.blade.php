@@ -4,7 +4,7 @@
         @include('web.layout.navbar')
         @stack('header')
     </div>
-    <div>
+    <div class="mt-5">
         @yield('main')
     </div>
     @include('web.layout.footer')

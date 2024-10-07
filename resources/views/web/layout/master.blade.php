@@ -18,7 +18,7 @@
 	<meta name="msapplication-config" content="{{ asset('icons/browserconfig.xml') }}">
 	<meta name="theme-color" content="#ffffff">
 
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<link rel="stylesheet" href="/css/app.css">
     @stack('head')
 </head>
 <body>

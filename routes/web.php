@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +12,27 @@ Route::get('/preview', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+/**
+ * Auth Routes
+ */
+
+Route::middleware('guest')->group(function() {
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+
+    Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+});
+Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+
+/**
+ * User specific
+ */
+Route::name('auth.')->middleware('auth')->group(function() {
+    Route::get('dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
+});
 
 /**
  * The App

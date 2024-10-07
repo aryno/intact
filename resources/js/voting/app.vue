@@ -88,7 +88,6 @@
     bottom: 80px;
     right: 20px;
     width: 350px;
-    border-radius: 20px;
     background: white;
     overflow: hidden;
     height: 50vh;
