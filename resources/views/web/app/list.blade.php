@@ -15,7 +15,9 @@
     @foreach($apps as $key => $app)
     <div class="card p-3 shadow border-0 mb-3">
         <div class="card-header bg-white border-0 d-flex justify-content-between">
-            <h5><i class="bi bi-motherboard-fill"></i> {{ $app->name }}</h5>
+            <div><h5 class="d-inline"><i class="bi bi-motherboard-fill"></i> {{ $app->name }}</h5>
+            	&nbsp; | <span class="ms-2 small">{{  $app->url }} | Hits: {{ $app->hits_count }}</span>
+            </div>
             <div>
                 <span class="badge {{ $app->is_active == 1 ? 'text-bg-success' : 'text-bg-danger' }}">Active</span>
                 <span>
@@ -33,9 +35,20 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="mb-3">
-                {{ $app->description }}
+            <div class="mb-3 bg-light">
+                Description:
+                <pre>{{ $app->description }}</pre>
             </div>
+
+            <div class="mb-3">
+
+                <label for="script" class="mb-1">Copy this code:</label>
+            	<textarea class="form-control bg-primary bg-opacity-10" readonly>{{
+                    '<div id="app_intact"></div> <script src="'.route('app.script', $app->client_id).'"></script>'
+                }}</textarea>
+
+            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <label class="mb-1" for="client_id">Client ID</label>
@@ -46,28 +59,7 @@
                     <input type="text" class="form-control" name="client_secret" value="{{ $app->client_secret }}" readonly>
                 </div>
             </div>
-            <table class="table d-none">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">URL</th>
-                        <th>Status</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">{{ $loop->index + 1 }}</th>
-                        <td>{{ $app->name }}</td>
-                        <td>{{ $app->url }}</td>
-                        <td>
-                            <span class="badge {{ $app->is_active == 1 ? 'text-bg-success' : 'text-bg-danger' }}">Active</span>
-                        </td>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
-            </table>
+
         </div>
     </div>
     @endforeach

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 
 class AppController extends Controller
@@ -50,5 +52,23 @@ class AppController extends Controller
         $apps = auth()->user()->apps()->get();
 
         return view('web.app.list', compact('apps'));
+    }
+
+    /**
+     * Return the script
+     */
+    public function script($clientId)
+    {
+        $app = App::where('client_id', $clientId)->firstOrFail();
+
+        $app->hits_count = $app->hits_count + 1;
+
+        $app->save();
+
+        $path = public_path('js/intact.js');
+
+        return Response::file($path, [
+            'Content-Type' => 'application/javascript',
+        ]);
     }
 }

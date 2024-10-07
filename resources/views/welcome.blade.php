@@ -8,7 +8,6 @@
 
     </head>
     <body class="">
-        <div id="app_intact"></div>
-        <script src="{{ mix('js/intact.js') }}"></script>
+        <div id="app_intact"></div> <script src="http://intact.test:8090/app/hnmjATsC"></script>
     </body>
 </html>

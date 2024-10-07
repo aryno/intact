@@ -20,6 +20,7 @@ return new class extends Migration
 
             $table->string('client_id');
             $table->string('client_secret');
+            $table->bigInteger('hits_count')->default(0);
 
             $table->boolean('is_active')->default(true);
             $table->timestamps();
