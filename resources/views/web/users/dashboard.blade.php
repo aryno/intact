@@ -7,8 +7,9 @@
             <div class="mb-4">
                 <h4>Welcome {{ auth()->user()->name }}</h4>
             </div>
-            <div class="p-4 bg-warning bg-opacity-10">
-                <div class="d-flex justify-content-between">
+            @if(auth()->user()->apps->isEmpty())
+            <div class="p-3 bg-warning bg-opacity-10">
+                <div class="d-flex justify-content-between align-items-center">
                     <div>
                         You haven't registered any apps yet. Register an app to get started
                     </div>
@@ -17,6 +18,19 @@
                     </div>
                 </div>
             </div>
+            @else
+            	<div class="p-3 bg-success bg-opacity-10">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        You have {{ auth()->user()->apps->count() }} associated active apps. You can view and manage them here.
+                    </div>
+                    <div>
+                        <a href="{{ route('app.list') }}" class="btn btn-success float-end">Manage Apps</a>
+                    </div>
+                </div>
+            </div>
+            @endif
+
         </div>
     </div>
 </div>

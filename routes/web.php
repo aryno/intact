@@ -33,8 +33,9 @@ Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
  */
 Route::middleware('auth')->group(function() {
     Route::get('dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
-    Route::get('app/create', [AppController::class, 'create'])->name('app.create');
-    Route::post('app/store', [AppController::class, 'store'])->name('app.store');
+    Route::get('apps/create', [AppController::class, 'create'])->name('app.create');
+    Route::post('apps/store', [AppController::class, 'store'])->name('app.store');
+    Route::get('apps/list', [AppController::class, 'list'])->name('app.list');
 });
 
 /**

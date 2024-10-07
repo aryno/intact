@@ -2,7 +2,7 @@
 @section('title', 'Create your app')
 @section('main')
 <div class="container mt-5">
-    <div class="card p-5 shadow border-0">
+    <div class="card p-4 shadow border-0">
     	@include('common.status')
 
         <div class="card-body">

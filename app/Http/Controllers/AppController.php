@@ -41,4 +41,14 @@ class AppController extends Controller
         return redirect()->back()->with(['status' => 'App created successfully!']);
 
     }
+
+    /**
+     * List all user's apps
+     */
+    public function list()
+    {
+        $apps = auth()->user()->apps()->get();
+
+        return view('web.app.list', compact('apps'));
+    }
 }
