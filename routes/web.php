@@ -12,6 +12,7 @@ Route::get('/preview', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('about-us', [HomeController::class, 'about'])->name('about');
 
 /**
  * Auth Routes
