@@ -7,7 +7,11 @@
         </button>
 
         <div class="i_dialog i_box-shadow-1" v-if="isVisible">
-        	<iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe>
+        	<!-- <iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe> -->
+
+            <iframe allowfullscreen="" name="intercom-messenger-frame" title="Intercom live chat" data-intercom-frame="true" role="dialog" src="http://intact.test:8090/app"></iframe>
+
+
         	<!-- <iframe src="data:text/html;charset=utf-8,<html><body><h2>Hello, World!</h2><p>This is some sample content inside an iframe.</p></body></html>"></iframe> -->
         </div>
 
@@ -47,7 +51,6 @@
     bottom: 80px;
     right: 20px;
     max-width: 48px;
-    width: 48px;
     max-height: 48px;
     height: 48px;
     border-radius: 50%;
@@ -80,11 +83,15 @@
 }
 
 .i_dialog {
+    border-radius: 15px;
 	position: absolute;
-    top: -170px;
-    left: -270px;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
     border-radius: 20px;
     background: white;
+    overflow: hidden;
+    height: 50vh;
 }
 
 .i_dialog iframe {

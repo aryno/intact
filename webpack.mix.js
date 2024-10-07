@@ -27,7 +27,7 @@ mix.js('resources/js/app.js', 'public/js/intact.js')
 //   )
 .vue();
 
-mix.postCss('resources/css/app.css', 'public/css', [
+mix.sass('resources/scss/app.scss', 'public/css', [
         //
     ]);
     //mix.js('resources/js/intact.js', 'dist').vue();
