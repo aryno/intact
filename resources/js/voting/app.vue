@@ -23,7 +23,8 @@
          props: {
             path: {
                 type: String,
-                required: true
+                required: true,
+                default: ''
             }
         },
     	data() {
