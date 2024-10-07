@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class App extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'url',
+        'description',
+
+        'client_id',
+        'client_secret',
+    ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}

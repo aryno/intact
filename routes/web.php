@@ -31,8 +31,10 @@ Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 /**
  * User specific
  */
-Route::name('auth.')->middleware('auth')->group(function() {
-    Route::get('dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
+Route::middleware('auth')->group(function() {
+    Route::get('dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
+    Route::get('app/create', [AppController::class, 'create'])->name('app.create');
+    Route::post('app/store', [AppController::class, 'store'])->name('app.store');
 });
 
 /**
