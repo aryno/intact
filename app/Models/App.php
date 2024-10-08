@@ -28,4 +28,9 @@ class App extends Model
     {
         return $this->hasMany(Feature::class);
     }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
 }

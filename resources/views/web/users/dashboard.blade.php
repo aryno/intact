@@ -31,7 +31,7 @@
                             <button type="button" class="btn btn-light border">
                             <a href="{{ route('list',$app->id) }}"> Feature Reviews</a> 
                             </button>
-                            <button type="button" class="btn btn-light border">Surveys</button>
+                            <a href="{{ route('survey.list', $app->id) }}" class="btn btn-light border">Surveys</a>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-light border" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-three-dots-vertical"></i>

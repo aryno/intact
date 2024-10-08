@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VotesController;
 use Illuminate\Http\Request;
@@ -46,6 +47,12 @@ Route::middleware('auth')->group(function() {
     Route::get('deleteFeature/{id}', [FeatureController::class, 'deleteFeature']);
     
     Route::post('/votes', [VotesController::class, 'storeVote'])->name('votes.store');
+
+    Route::get('survey/list/{id}', [SurveyController::class, 'list'])->name('survey.list');
+    Route::get('survey/{id}', [SurveyController::class, 'create'])->name('survey.create');
+    Route::post('survey', [SurveyController::class, 'save'])->name('survey.save');
+    Route::get('survey/responses/{id}', [SurveyController::class, 'showResponses'])->name('survey.showResponses');
+    Route::post('survey/responses', [SurveyController::class, 'saveResponses'])->name('survey.saveResponses');
 });
 
 Route::get('script/{code}.js', [AppController::class, 'script'])->name('app.script');
