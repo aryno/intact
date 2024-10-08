@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VotesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,23 +22,30 @@ Route::get('about-us', [HomeController::class, 'about'])->name('about');
 
 Route::middleware('guest')->group(function() {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    // Route::post('login', [AuthController::class, 'login'])->name('login');
 
     Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
-    Route::post('register', [AuthController::class, 'register'])->name('register');
+    // Route::post('register', [AuthController::class, 'register'])->name('register');
 });
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 /**
  * User specific
  */
-Route::name('auth.')->middleware('auth')->group(function() {
-    Route::get('dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
-    Route::post('createFeature', [FeatureController::class, 'createFeature'])->name('createFeature');
-    Route::get('feature', [FeatureController::class, 'createFeatureForm'])->name('feature');
-    Route::get('features/{id}/edit', [FeatureController::class, 'getFeatures'])->name('getFeatures');
-    Route::put('updateFeature/{id}', [FeatureController::class, 'updateFeature'])->name('auth.updateFeature');
+Route::middleware('auth')->group(function() {
+    Route::get('dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
+    Route::get('apps/create', [AppController::class, 'create'])->name('app.create');
+    Route::post('apps/store', [AppController::class, 'store'])->name('app.store');
+    Route::get('apps/list', [AppController::class, 'list'])->name('app.list');
+    Route::get('script/{code}', [AppController::class, 'script'])->name('app.script');
+    Route::post('createFeature', [FeatureController ::class, 'createFeature'])->name('feature.createFeature'); // to create feature
+    Route::get('featuresList',  [FeatureController::class, 'geAllFeatures'])->name('list');
+    Route::get('feature/{id}', [FeatureController::class, 'createFeatureForm'])->name('feature'); // show feature form for add feature
+    Route::get('features/{id?}/edit', [FeatureController::class, 'getFeatures'])->name('getFeatures'); //edit  feature from feature
+    Route::put('updateFeature/{id}', [FeatureController::class, 'updateFeature'])->name('feature.updateFeature');
     Route::get('deleteFeature/{id}', [FeatureController::class, 'deleteFeature']);
+    
+    Route::post('/votes', [VotesController::class, 'storeVote'])->name('votes.store');
 });
 
 /**
@@ -47,6 +55,8 @@ Route::name('auth.')->middleware('auth')->group(function() {
 Route::prefix('app')->group(function() {
     Route::get('', [AppController::class, 'index'])->name('index');
 });
+
+Route::get('script/{code}/app', [AppController::class, 'show'])->name('app.show');
 
 Route::any('stripe', function(Request $request) {
     file_put_contents(now()->format('Y_m_d_His_u')."_stripe_$request->id _ $request->type .json", json_encode($request->all()));

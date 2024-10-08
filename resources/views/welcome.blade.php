@@ -9,6 +9,6 @@
     </head>
     <body class="">
         <div id="app_intact"></div>
-        <script src="{{ mix('js/intact.js') }}"></script>
+        <script id="script_intact" src="http://intact.test:8090/script/hnmjATsC"></script>
     </body>
 </html>

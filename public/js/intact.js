@@ -34,10 +34,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    path: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     return {
+      src: this.path + '/app',
       isVisible: false
     };
+  },
+  mounted: function mounted() {
+    console.log("The trackerId", this.path); // "someid"
   },
   methods: {
     toggleDisplay: function toggleDisplay() {
@@ -63,35 +73,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Import Bootstrap and BootstrapVue CSS files (order is important)
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
+var path = document.getElementById('script_intact').getAttribute('src');
 
-// // Make BootstrapVue available throughout your project
-// Vue.use(BootstrapVue)
-// // Optionally install the BootstrapVue icon components plugin
-// Vue.use(IconsPlugin)
+// const app = new Vue({
+//     el: '#app_intact',
+//     render: h => h(App, {props: { trackerId })
+//     //components: { App }
+// });
 
-
-var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  el: '#app_intact',
+new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
   render: function render(h) {
-    return h(_voting_app__WEBPACK_IMPORTED_MODULE_1__["default"]);
-  } // Dynamically render the App component
-  //components: { App }
-});
-
-// export function add(a, b) {
-//     return a + b;
-// }
-
-// export function greet(name) {
-//     return `Hello, ${name}!`;
-// }
-
-// // Example usage (you can remove this later)
-// console.log(add(2, 3)); // 5
-// console.log(greet('World')); // Hello, World!
+    return h(_voting_app__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      props: {
+        path: path
+      }
+    });
+  }
+}).$mount('#app_intact');
 
 /***/ }),
 
@@ -2940,7 +2938,7 @@ var render = function () {
               title: "Intercom live chat",
               "data-intercom-frame": "true",
               role: "dialog",
-              src: "http://intact.test:8090/app",
+              src: _vm.src,
             },
           }),
         ])

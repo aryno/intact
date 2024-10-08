@@ -16,10 +16,11 @@ return new class extends Migration
             $table->foreignId('creator_id');
             $table->string('name');
             $table->string('description', 200);
-            $table->string('url');
+            $table->string('url')->unique();
 
             $table->string('client_id');
             $table->string('client_secret');
+            $table->bigInteger('hits_count')->default(0);
 
             $table->boolean('is_active')->default(true);
             $table->timestamps();

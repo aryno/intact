@@ -16,7 +16,7 @@ class Feature extends Model
         'description',
         'image',
         'user_id',
-        'id'
+        'app_id'
     ];
     // Validation method
     public static function validate($data)
@@ -26,5 +26,12 @@ class Feature extends Model
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+    }
+    /**
+     * Get App's related features
+     */
+    public function features()
+    {
+        return $this->hasMany(Feature::class, 'app_id');
     }
 }

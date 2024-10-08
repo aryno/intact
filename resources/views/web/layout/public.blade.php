@@ -4,7 +4,7 @@
         @include('web.layout.navbar')
         @stack('header')
     </div>
-    <div class="mt-5" style="min-height: 500px;">
+    <div class="" style="min-height: 500px;padding-top: 60px;">
         @yield('main')
     </div>
     @include('web.layout.footer')

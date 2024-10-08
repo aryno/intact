@@ -8,11 +8,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <li class="nav-item me-4">
+          <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="{{ route('list') }}">Features</a>
         </li>
       </ul>
     </div>
@@ -20,6 +20,10 @@
     <div>
       <ul class="navbar-nav">
         @if(auth()->check())
+        <li class="nav-item me-4">
+            <a class="nav-link active" aria-current="page" href="{{ route('users.dashboard')  }}">
+              Dashboard</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('auth.logout')  }}">Logout</a>
           </li>

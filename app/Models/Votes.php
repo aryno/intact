@@ -9,4 +9,11 @@ class Votes extends Model
 {
     use HasFactory;
     protected $table = 'votes';
+    protected $fillable = [
+        'feature_id',
+        'comment',
+        'user_id',
+        'vote_status'
+
+    ];
 }

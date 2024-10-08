@@ -16,13 +16,13 @@ class FeatureController extends Controller
     *create feature
     * input params : title, desciption
     */
-    public function createFeatureForm(Request $request){
-        return view('web.feature.createFeature');
+    public function createFeatureForm(Request $request,$id)
+    {
+        return view('web.feature.createFeature',['app_id'=>$id]);
     }
     public function createFeature(Request $request)
-    {
+    {   
         
- 
         // Validate the request
         $validator = Feature::validate($request->all());
 
@@ -41,7 +41,7 @@ class FeatureController extends Controller
         $featureData['image'] =$imagePath;
 
          $feature = Feature::create($featureData);
-         return redirect()->route('auth.feature')->with('success', 'Feature created successfully!');
+         return redirect()->route('app.list')->with(['status' => 'Feature created successfully!']);
     }
 
     /*
@@ -50,19 +50,18 @@ class FeatureController extends Controller
     */
     public function getFeatures(Request $request, $id = null)
     {
-        if ($id) {
-            $feature = Feature::find($id);
+        $feature = Feature::find($id);
 
-            if (!$feature) {
-                return response()->json(['message' => 'Feature not found'], 404); // Not Found
-            }
-            return view('web.feature.createFeature', compact('feature'));
-
-        } else {
-            $features = Feature::all();
-
-            return response()->json($features, 200); 
+        if (!$feature) {
+            return response()->json(['message' => 'Feature not found'], 404); // Not Found
         }
+        return view('web.feature.createFeature', compact('feature'));
+    }
+    public function geAllFeatures(Request $request)
+    {
+        $features = Feature::all();
+
+        return view('web.feature.featuresList', compact('features'));
     }
 
     public function updateFeature(Request $request,$id)
@@ -75,13 +74,13 @@ class FeatureController extends Controller
 
         // Check for validation errors
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400); // Bad Request
+            return redirect()->back()->with(['status' => 'Feature Update Failed']);
         }
 
         // Update the feature with new data
         $feature->update($request->all());
 
-        return redirect()->route('auth.feature')->with('success', 'Feature updated successfully!');
+        return redirect()->route('app.list')->with(['status' => 'Feature updated successfully!']);
     }
 
     /*
