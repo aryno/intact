@@ -44,7 +44,7 @@
 
                 <label for="script" class="mb-1">Copy this code:</label>
             	<textarea class="form-control bg-primary bg-opacity-10" readonly>{{
-                    '<div id="app_intact"></div> <script id="script_intact" src="'.route('app.script', $app->client_id).'"></script>'
+                    '<div id="app_intact" data-identifier=""></div> <script id="script_intact" src="'.route('app.script', $app->client_id).'"></script>'
                 }}</textarea>
 
             </div>
