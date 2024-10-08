@@ -72,7 +72,15 @@
         <div class="container text-center">
             <h2>Ready to Enhance Your App?</h2>
             <p class="lead">Join us today and take your app to the next level!</p>
-            <a class="btn btn-success btn-lg" href="{{ route('register') }}" role="button">Get Started</a>
+            @if(auth()->check())
+            <a class="btn btn-success btn-lg" href="{{ route('users.dashboard') }}" role="button">
+            	Go to your Dashboard
+        	</a>
+        	@else
+        	<a class="btn btn-success btn-lg" href="{{ route('register') }}" role="button">
+            	Get Started
+        	</a>
+        	@endif
         </div>
     </section>
 @endsection
