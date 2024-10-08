@@ -7,7 +7,7 @@
           <span class="fs-5 ms-2 fw-bold">{{ config('app.name') }}</span>
         </a>
         <ul class="list-unstyled small">
-          <li class="mb-2">Designed and built by team <strong>ZoomSquad</strong></li>
+          <li class="mb-2">Designed and built by team <strong>ZoomSquad</strong> @vertafore</li>
         </ul>
       </div>
       <div class="col-6 col-lg-2 offset-lg-1 mb-3">
