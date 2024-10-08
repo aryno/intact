@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VotesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +29,6 @@ Route::middleware('guest')->group(function() {
 });
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-
 /**
  * User specific
  */
@@ -36,7 +37,15 @@ Route::middleware('auth')->group(function() {
     Route::get('apps/create', [AppController::class, 'create'])->name('app.create');
     Route::post('apps/store', [AppController::class, 'store'])->name('app.store');
     Route::get('apps/list', [AppController::class, 'list'])->name('app.list');
-
+    Route::get('script/{code}', [AppController::class, 'script'])->name('app.script');
+    Route::post('createFeature', [FeatureController ::class, 'createFeature'])->name('feature.createFeature'); // to create feature
+    Route::get('featuresList/{id?}',  [FeatureController::class, 'geAllFeatures'])->name('list');
+    Route::get('feature/{id}', [FeatureController::class, 'createFeatureForm'])->name('feature'); // show feature form for add feature
+    Route::get('features/{id?}/edit', [FeatureController::class, 'getFeatures'])->name('getFeatures'); //edit  feature from feature
+    Route::put('updateFeature/{id}', [FeatureController::class, 'updateFeature'])->name('feature.updateFeature');
+    Route::get('deleteFeature/{id}', [FeatureController::class, 'deleteFeature']);
+    
+    Route::post('/votes', [VotesController::class, 'storeVote'])->name('votes.store');
 });
 
 Route::get('script/{code}.js', [AppController::class, 'script'])->name('app.script');

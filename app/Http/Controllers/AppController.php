@@ -49,8 +49,7 @@ class AppController extends Controller
      */
     public function list()
     {
-        $apps = auth()->user()->apps()->get();
-
+        $apps = auth()->user()->apps()->with('features')->get();
         return view('web.app.list', compact('apps'));
     }
 

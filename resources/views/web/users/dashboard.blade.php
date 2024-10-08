@@ -28,7 +28,9 @@
                     </div>
                     <div class="col-md-6 text-end">
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <button type="button" class="btn btn-light border">Feature Reviews</button>
+                            <button type="button" class="btn btn-light border">
+                            <a href="{{ route('list',$app->id) }}"> Feature Reviews</a> 
+                            </button>
                             <button type="button" class="btn btn-light border">Surveys</button>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-light border" data-bs-toggle="dropdown" aria-expanded="false">

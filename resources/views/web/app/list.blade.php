@@ -61,6 +61,43 @@
             </div>
 
         </div>
+    <div class="card-body">
+        <div class="card-header bg-white border-0 d-flex justify-content-between">
+            <div><h5 class="d-inline"><i class="bi bi-app-indicator"></i> App Features</h5>
+            </div>
+            <div>
+                <a href="{{ route('feature',$app->id) }}" class="btn btn-primary float-end">+ Add Feature</a>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Active</th>
+                <th scope="col">No. of Votes</th>
+                </tr>
+            </thead> 
+            <tbody>
+            @if($app->features->isEmpty())
+            <tr>
+                <td colspan="5">No features available</td>
+            </tr>
+            @else
+                @foreach($app->features as $feature)
+                <tr>
+                    <th scope="row">{{ $feature->id }}</th>
+                    <td><a href="{{ route('getFeatures',$feature->id) }}"> {{ $feature->title }}</a></td>
+                    <td>{{ $feature->description }}</td>
+                    <td><span class="badge {{ $feature->status == 'active' ? 'text-bg-success' : 'text-bg-danger' }}">Active</span></td>
+                    <td>1</td>
+                </tr>
+                @endforeach
+            @endif
+            </tbody>
+            </table>
+    </div>
     </div>
     @endforeach
 </div>
