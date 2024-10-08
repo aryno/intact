@@ -9,7 +9,7 @@
 	        <p>You can browse or manage your apps here</p>
     	</div>
     	<div class="">
-    		<a href="{{ route('app.create') }}" class="btn btn-primary float-end">+ Create App</a>
+    		<a href="{{ route('app.create') }}" class="btn btn-primary float-end">+ Add an App</a>
     	</div>
     </div>
     @foreach($apps as $key => $app)

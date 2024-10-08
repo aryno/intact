@@ -16,7 +16,7 @@ class VotesController extends Controller
 
         $vote = Votes::create([
             'feature_id' => $request->feature_id,
-            'user_id' => auth()->id(), // Get the logged-in user ID
+            'user_id' => $request->user_id, 
             'comment' => $request->comment,
             'vote_status' => $request->vote_status,
         ]);

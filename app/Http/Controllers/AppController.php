@@ -36,7 +36,7 @@ class AppController extends Controller
             'name' => $fields['app_name'],
             'url' => $fields['app_url'],
             'description' => $fields['app_info'],
-            'client_id' => Str::random(8),
+            'client_id' => strtolower(Str::random(8)),
             'client_secret' => Str::uuid(),
         ]);
 

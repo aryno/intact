@@ -7,6 +7,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\App;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 
@@ -57,11 +58,23 @@ class FeatureController extends Controller
         }
         return view('web.feature.createFeature', compact('feature'));
     }
-    public function geAllFeatures(Request $request)
+    public function geAllFeatures(Request $request,$id=null)
     {
-        $features = Feature::all();
+        if($id == null){
+            $features = Feature::all();
 
-        return view('web.feature.featuresList', compact('features'));
+            return view('web.feature.featuresList', compact('features'));
+        }else{
+            $features = App::findOrFail($id)->features()->with('votes')->get();
+            $features->map(function($feature){
+                if($feature->vote_type !='Rate 1 to 10'){
+                    $feature->likes_count = $feature->votes->where('vote_status', 1)->count();
+                    $feature->dislikes_count = $feature->votes->where('vote_status', 0)->count();
+                }
+            });
+            return view('web.feature.appFeaturesList', compact('features'));
+        }
+        
     }
 
     public function updateFeature(Request $request,$id)

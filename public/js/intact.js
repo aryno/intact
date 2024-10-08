@@ -37,7 +37,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     path: {
       type: String,
-      required: true
+      required: true,
+      "default": ''
     }
   },
   data: function data() {

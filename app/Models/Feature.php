@@ -16,7 +16,8 @@ class Feature extends Model
         'description',
         'image',
         'user_id',
-        'app_id'
+        'app_id',
+        'vote_type'
     ];
     // Validation method
     public static function validate($data)
@@ -25,6 +26,7 @@ class Feature extends Model
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'vote_type' => 'required',
         ]);
     }
     /**
@@ -33,5 +35,13 @@ class Feature extends Model
     public function features()
     {
         return $this->hasMany(Feature::class, 'app_id');
+    }
+    public function app()
+    {
+        return $this->belongsTo(App::class);
+    }
+    public function votes()
+    {
+        return $this->hasMany(Votes::class);
     }
 }

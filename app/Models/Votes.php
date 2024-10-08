@@ -16,4 +16,9 @@ class Votes extends Model
         'vote_status'
 
     ];
+
+    public function feature()
+    {
+        return $this->belongsTo(Feature::class);
+    }
 }

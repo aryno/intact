@@ -29,6 +29,15 @@
                 </div>
             </div>
             <div class="mb-4">
+                <label for="vote_type" class="form-label">Vote Type</label>
+                <select name="vote_type" id="vote_type" class="form-select" required>
+                    <option value="">Select Vote Type</option>
+                    <option value="Like & Dislike">Like & Dislike</option>
+                    <option value="Rate 1 to 10">Rate 1 to 10</option>
+                    
+                </select>
+            </div>
+            <div class="mb-4">
                 <label for="image">Image URL</label>
                 <input type="file" name="image" id="image" class="form-control">
                 @if(isset($feature) && $feature->image)
@@ -36,22 +45,21 @@
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">{{ isset($feature) ? 'Update Feature' : 'Create New Feature' }}</button>
-            <!-- <button type="button" class="btn btn-primary w-100" id='voteForm'>Vote</button> -->
+            <button type="button" class="btn btn-primary w-100" id='voteForm'>Vote</button>
         </form>
 
     </div>
     </div>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#voteForm').on('click', function(e) {
         e.preventDefault(); // Prevent default form submission
         const formData = {
-            feature_id: 2,
-            comment: 'Testing Voting',
-            vote_status:1,
+            feature_id: 19,
+            comment: 'really Amzain',
+            vote_status:0,
+            user_id:'',
             _token: '{{ csrf_token() }}' // CSRF token
         };
 

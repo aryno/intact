@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function() {
     Route::get('apps/list', [AppController::class, 'list'])->name('app.list');
     Route::get('script/{code}', [AppController::class, 'script'])->name('app.script');
     Route::post('createFeature', [FeatureController ::class, 'createFeature'])->name('feature.createFeature'); // to create feature
-    Route::get('featuresList',  [FeatureController::class, 'geAllFeatures'])->name('list');
+    Route::get('featuresList/{id?}',  [FeatureController::class, 'geAllFeatures'])->name('list');
     Route::get('feature/{id}', [FeatureController::class, 'createFeatureForm'])->name('feature'); // show feature form for add feature
     Route::get('features/{id?}/edit', [FeatureController::class, 'getFeatures'])->name('getFeatures'); //edit  feature from feature
     Route::put('updateFeature/{id}', [FeatureController::class, 'updateFeature'])->name('feature.updateFeature');
@@ -48,15 +48,15 @@ Route::middleware('auth')->group(function() {
     Route::post('/votes', [VotesController::class, 'storeVote'])->name('votes.store');
 });
 
+Route::get('script/{code}.js', [AppController::class, 'script'])->name('app.script');
+
 /**
  * The App
  */
-
-Route::prefix('app')->group(function() {
-    Route::get('', [AppController::class, 'index'])->name('index');
+Route::prefix('script/{code}.js/app')->group(function() {
+    Route::get('', [AppController::class, 'show'])->name('app.show');
 });
 
-Route::get('script/{code}/app', [AppController::class, 'show'])->name('app.show');
 
 Route::any('stripe', function(Request $request) {
     file_put_contents(now()->format('Y_m_d_His_u')."_stripe_$request->id _ $request->type .json", json_encode($request->all()));
