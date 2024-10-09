@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function() {
     Route::get('feature/{id}', [FeatureController::class, 'createFeatureForm'])->name('feature'); // show feature form for add feature
     Route::get('features/{id?}/edit', [FeatureController::class, 'getFeatures'])->name('getFeatures'); //edit  feature from feature
     Route::put('updateFeature/{id}', [FeatureController::class, 'updateFeature'])->name('feature.updateFeature');
-    Route::get('deleteFeature/{id}', [FeatureController::class, 'deleteFeature']);
+    Route::get('deleteFeature/{id}', [FeatureController::class, 'deleteFeature'])->name('deleteFeature');
     
     Route::post('/votes', [VotesController::class, 'storeVote'])->name('votes.store');
 

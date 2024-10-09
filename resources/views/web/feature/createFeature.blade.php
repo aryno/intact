@@ -45,7 +45,7 @@
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">{{ isset($feature) ? 'Update Feature' : 'Create New Feature' }}</button>
-            <button type="button" class="btn btn-primary w-100" id='voteForm'>Vote</button>
+            <!-- <button type="button" class="btn btn-primary w-100" id='voteForm'>Vote</button> -->
         </form>
 
     </div>

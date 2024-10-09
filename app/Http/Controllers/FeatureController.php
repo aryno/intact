@@ -65,13 +65,17 @@ class FeatureController extends Controller
 
             return view('web.feature.featuresList', compact('features'));
         }else{
-            $features = App::findOrFail($id)->features()->with('votes')->get();
-            $features->map(function($feature){
+            $features = App::with(['features' => function ($query) {
+                $query->with('votes');
+            }])->findOrFail($id);
+            foreach ($features->features as $feature) {
                 if($feature->vote_type !='Rate 1 to 10'){
                     $feature->likes_count = $feature->votes->where('vote_status', 1)->count();
                     $feature->dislikes_count = $feature->votes->where('vote_status', 0)->count();
+                }else{
+                    $feature->avg_rating=ceil($feature->votes->whereNotNull('vote_status')->avg('vote_status'));
                 }
-            });
+            }
             return view('web.feature.appFeaturesList', compact('features'));
         }
         
@@ -113,7 +117,7 @@ class FeatureController extends Controller
         $feature->delete();
 
         // Return a success response
-        return response()->json(['message' => 'Feature deleted successfully'], 200);
+        return redirect()->route('app.list')->with(['status' => 'Feature deleted successfully!']);
     }
 
 }

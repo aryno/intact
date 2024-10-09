@@ -75,8 +75,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope='col'>Image</th>
                 <th scope="col">Active</th>
-                <th scope="col">No. of Votes</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead> 
             <tbody>
@@ -90,8 +91,16 @@
                     <th scope="row">{{ $feature->id }}</th>
                     <td><a href="{{ route('getFeatures',$feature->id) }}"> {{ $feature->title }}</a></td>
                     <td>{{ $feature->description }}</td>
+                    @if($feature->image) 
+                    <td>
+                        <img src="{{ url('storage/' . $feature->image) }}" alt="{{ $feature->title }}" class="img-fluid" style="width: 100Px;height: 50px">
+                    </td>
+                    @else
+                    <td>--</td>
+                    @endif
                     <td><span class="badge {{ $feature->status == 'active' ? 'text-bg-success' : 'text-bg-danger' }}">Active</span></td>
-                    <td>1</td>
+                    <td><a href="{{ route('deleteFeature',$feature->id) }}"><i class="bi bi-trash text-danger"></i></a></td>
+                    
                 </tr>
                 @endforeach
             @endif
